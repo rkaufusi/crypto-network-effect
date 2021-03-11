@@ -1,25 +1,52 @@
-import logo from './logo.svg';
-import './App.css';
+import React, {useState, useEffect} from 'react';
+import axios from 'axios';
+import Crypto from './Crypto';
 
 function App() {
+  const [crypto, setCrypto] = useState([]);
+  const [search, setSearch] = useState('');
+
+  useEffect(() => {
+    axios.get('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false'
+    ).then(res => {
+      setCrypto(res.data);
+      console.log(res.data);
+    }).catch(error => console.log(error));
+  }, []);
+
+  const change = e => {
+    setSearch(e.target.value);
+  };
+
+  const filteredCrypto = crypto.filter(crypto => crypto.name.toLowerCase().includes(search.toLowerCase()));
+  
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className='crypto'>
+      <div className='search-bar'>
+      <h1 className='search-heading'>Search a crypto</h1>
+      <form>
+      <input
+        className='input'
+        type='text'
+        onChange={change}
+        placeholder='Search'/>
+      </form>
+      </div>
+      {filteredCrypto.map(crypto => {
+        return (
+          <Crypto
+            key={crypto.id}
+            image={crypto.image}
+            name={crypto.name}
+            rank={crypto.rank}
+            price={crypto.current_price}
+            marketcap={crypto.market_cap}
+            volume={crypto.total_volume}
+            priceChange={crypto.price_change_percentage_24h}/>
+        );
+      })}
     </div>
   );
 }
-// export here
+
 export default App;
