@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 import Crypto from './Crypto';
+import './App.css';
 
 function App() {
   const [crypto, setCrypto] = useState([]);
@@ -22,6 +23,7 @@ function App() {
   
   return (
     <div className='crypto'>
+      <h1 className='title'>Metcalfe's law and Crypto currency</h1>
       <div className='search-bar'>
       <h1 className='search-heading'>Search a crypto</h1>
       <form>

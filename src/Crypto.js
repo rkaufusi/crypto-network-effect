@@ -1,4 +1,5 @@
 import React from 'react';
+import './Crypto.css';
 
 const Crypto = ({
     rank, image, name, symbol, price, marketcap, priceChange, volume
@@ -16,14 +17,15 @@ const Crypto = ({
           <p className='price'>${price}</p>
           <p className='crypto-volume'>${volume.toLocaleString()}</p>
 
-
           {priceChange > 0 ? (
             <p className='positive-change'>{Math.round(priceChange * 100) / 100}%</p>
           ) : (
             <p className='negative-change'>{Math.round(priceChange * 100) / 100}%</p>
           )}
 
-          <p className='marketcap'>Market Cap ${marketcap.toLocaleString()}</p>
+            <p className='marketcap'>
+              Market Cap ${marketcap.toLocaleString()}
+            </p>
           </div>
         </div>
       </div>
