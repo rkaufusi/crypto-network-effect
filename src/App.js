@@ -23,7 +23,7 @@ function App() {
   
   return (
     <div className='crypto'>
-      <h1 className='title'>Metcalfe's law and Crypto currency</h1>
+      <h2 className='title'>Metcalfe's law and Crypto currency</h2>
       <div className='search-bar'>
       <h1 className='search-heading'>Search a crypto</h1>
       <form>
@@ -40,7 +40,7 @@ function App() {
             key={crypto.id}
             image={crypto.image}
             name={crypto.name}
-            rank={crypto.rank}
+            rank={crypto.market_cap_rank}
             price={crypto.current_price}
             marketcap={crypto.market_cap}
             volume={crypto.total_volume}
