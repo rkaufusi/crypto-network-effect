@@ -5,15 +5,16 @@ const Crypto = ({
     rank, image, name, symbol, price, marketcap, priceChange, volume
 }) => {
     return (
+ 
       <div className='crypto-container'>
         <div className='crypto-row'>
-          <div className='crypto'>
-            <p className='crypto-rank'>{rank}</p>
-            <img src={image} alt={name}/>
-            <h1>{name}</h1>
-            <p className='crypto-symbol'>{symbol}</p>
-          </div>
+
           <div className='crypto-info'>
+          <h1>{name}</h1>
+          <p className='crypto-symbol'>{symbol}</p>
+          
+          <img src={image} alt={name}/>
+          <p className="rank">{rank}</p>
           <p className='price'>${price}</p>
           <p className='crypto-volume'>${volume.toLocaleString()}</p>
 

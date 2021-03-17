@@ -41,6 +41,7 @@ function App() {
             image={crypto.image}
             name={crypto.name}
             rank={crypto.market_cap_rank}
+            symbol={crypto.symbol}
             price={crypto.current_price}
             marketcap={crypto.market_cap}
             volume={crypto.total_volume}
