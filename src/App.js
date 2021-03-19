@@ -5,6 +5,7 @@ import './App.css';
 
 function App() {
   const [crypto, setCrypto] = useState([]);
+  const [subs, setSubs] = useState([]);
   const [search, setSearch] = useState('');
 
   useEffect(() => {
@@ -14,6 +15,8 @@ function App() {
       console.log(res.data);
     }).catch(error => console.log(error));
   }, []);
+
+
 
   const change = e => {
     setSearch(e.target.value);
@@ -34,6 +37,7 @@ function App() {
         placeholder='Search'/>
       </form>
       </div>
+ 
       {filteredCrypto.map(crypto => {
         return (
           <Crypto
@@ -45,7 +49,8 @@ function App() {
             price={crypto.current_price}
             marketcap={crypto.market_cap}
             volume={crypto.total_volume}
-            priceChange={crypto.price_change_percentage_24h}/>
+            priceChange={crypto.price_change_percentage_24h}
+            redditSubs={crypto.subscribers}/>
         );
       })}
     </div>

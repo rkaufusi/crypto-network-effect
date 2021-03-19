@@ -1,14 +1,16 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
+import axios from 'axios';
 import './Crypto.css';
 
+
 const Crypto = ({
-    rank, image, name, symbol, price, marketcap, priceChange, volume
+    rank, image, name, symbol, price, marketcap, priceChange, volume, redditSubs
 }) => {
     return (
- 
+    
       <div className='crypto-container'>
         <div className='crypto-row'>
-
+        
           <div className='crypto-info'>
           <h1>{name}</h1>
           <p className='crypto-symbol'>{symbol}</p>
@@ -25,7 +27,11 @@ const Crypto = ({
           )}
 
             <p className='marketcap'>
-              Market Cap ${marketcap.toLocaleString()}
+              ${marketcap.toLocaleString()}
+            </p>
+
+            
+            <p className='subreddit-subscriber-count'>{redditSubs}
             </p>
           </div>
         </div>

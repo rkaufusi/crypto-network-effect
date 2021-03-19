@@ -4,8 +4,13 @@
   padding: 0;
 }
 
-.title{
+
+.title {
   padding-bottom: 40px;
+}
+
+.row-heading {
+  align-items: left;
 }
 
 .crypto {
