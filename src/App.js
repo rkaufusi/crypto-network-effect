@@ -8,12 +8,32 @@ function App() {
   const [subs, setSubs] = useState([]);
   const [search, setSearch] = useState('');
 
+  //useEffect(() => {
+   // axios.get('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false'
+   // ).then(res => {
+   //   setCrypto(res.data);
+   //   console.log(res.data);
+   // }).catch(error => console.log(error));
+  //}, []);
+
+  const fetchData = () => {
+    const coinGeckoApi = 'https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false';
+    const redditSubsApi = 'https://www.reddit.com/r/bitcoin/about.json';
+
+    const getCoinGeckoApi = axios.get(coinGeckoApi);
+    const getRedditSubsApi = axios.get(redditSubsApi);
+    axios.all([getCoinGeckoApi, getRedditSubsApi]).then(
+      axios.spread((...allData) => {
+        const allCoinGecko = allData[0].data;
+        const allReddit = allData[1].data.data.subscribers;
+        setCrypto(allCoinGecko);
+        console.log(allReddit);
+        setSubs(allReddit);
+      })
+    ).catch(error => console.log(error));
+  }
   useEffect(() => {
-    axios.get('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false'
-    ).then(res => {
-      setCrypto(res.data);
-      console.log(res.data);
-    }).catch(error => console.log(error));
+    fetchData()
   }, []);
 
 
@@ -50,7 +70,7 @@ function App() {
             marketcap={crypto.market_cap}
             volume={crypto.total_volume}
             priceChange={crypto.price_change_percentage_24h}
-            redditSubs={crypto.subscribers}/>
+            redditSubs={subs}/>
         );
       })}
     </div>
