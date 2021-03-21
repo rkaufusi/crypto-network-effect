@@ -18,7 +18,8 @@ function App() {
 
   const fetchData = () => {
     const coinGeckoApi = 'https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false';
-    const redditSubsApi = 'https://www.reddit.com/r/bitcoin/about.json';
+    //const redditSubsApi = 'https://www.reddit.com/r/bitcoin/about.json';
+    const redditSubsApi = `https://www.reddit.com/r/${crypto.name}/about.json`;
 
     const getCoinGeckoApi = axios.get(coinGeckoApi);
     const getRedditSubsApi = axios.get(redditSubsApi);

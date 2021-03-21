@@ -30,7 +30,7 @@ const Crypto = ({
             </p>
 
             
-            <p className='subreddit-subscriber-count'>{redditSubs}
+            <p className='subreddit-subscriber-count'>Reddit {redditSubs}
             </p>
           </div>
         </div>
